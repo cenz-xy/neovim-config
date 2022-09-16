@@ -17,7 +17,7 @@ end
 vim.cmd([[
 	augroup packer_user_config
   	autocmd!
-  	autocmd BufWritePost ~/.config/nvim/lua/plugins/init.lua source <afile> | PackerSync
+  	autocmd BufWritePost ~/.config/nvim/lua/plugins.lua source <afile> | PackerSync
 	augroup end
 
 ]])
@@ -34,10 +34,13 @@ return packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- Which-Key for popup with possible key bindings of the command
-	use("folke/which-key.nvim")
+	use({
+		"folke/which-key.nvim",
+		config = "require('whichkey-config')",
+	})
 
-	-- Dashboard a start screen -- [ X ]
-	use("glepnir/dashboard-nvim")
+	-- Dashboard a start screen
+	use({ "glepnir/dashboard-nvim", config = "require('dashboard-config')" })
 
 	-- Telescope a finder over lists
 	use({
@@ -53,13 +56,17 @@ return packer.startup(function(use)
 			"kyazdani42/nvim-web-devicons",
 			opt = true,
 		},
+		config = "require('tokyonight-config')",
 	})
 
 	-- Indent Blankline
-	use("lukas-reineke/indent-blankline.nvim")
+	use({
+		"lukas-reineke/indent-blankline.nvim",
+		config = "require('blankline-config')",
+	})
 
 	-- Comment text
-	use("terrortylor/nvim-comment")
+	use({ "terrortylor/nvim-comment", config = "require('comment-config')" })
 
 	-- LSP & Completion & Snippet & Debug
 	use({
@@ -80,25 +87,44 @@ return packer.startup(function(use)
 			"jose-elias-alvarez/null-ls.nvim",
 			"nvim-lua/plenary.nvim",
 		},
+		config = { "require('lsp-config')", "require('luasnip-config')" },
+	})
+	use({
+		"williamboman/mason.nvim",
+		requires = {
+			"williamboman/mason-lspconfig.nvim",
+		},
+		config = "require('mason-config')",
 	})
 
 	-- Treesitter for highlighting
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
+		config = "require('treesitter-config')",
 	})
 
 	-- Autotag
-	use({ "windwp/nvim-ts-autotag" })
+	use({
+		"windwp/nvim-ts-autotag",
+	})
 
 	-- Rainbow
-	use({ "p00f/nvim-ts-rainbow" })
+	use({
+		"p00f/nvim-ts-rainbow",
+	})
 
 	-- Autopairs
-	use({ "windwp/nvim-autopairs" })
+	use({
+		"windwp/nvim-autopairs",
+		config = "require('autopairs-config')",
+	})
 
 	-- Colorizer
-	use({ "norcalli/nvim-colorizer.lua" })
+	use({
+		"norcalli/nvim-colorizer.lua",
+		config = "require('colorizer-config')",
+	})
 
 	-- Gitsigns
 	use({
@@ -113,10 +139,16 @@ return packer.startup(function(use)
 	use({
 		"kyazdani42/nvim-tree.lua",
 		requires = "kyazdani42/nvim-web-devicons",
+		config = "require('nvim-tree-config')",
 	})
 
 	-- Bufferlines
-	use({ "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" })
+	use({
+		"akinsho/bufferline.nvim",
+		tag = "v2.*",
+		requires = "kyazdani42/nvim-web-devicons",
+		config = "require('bufferlines-config')",
+	})
 
 	-- Tagbar for overview of its stucture
 	use("preservim/tagbar")
@@ -125,9 +157,7 @@ return packer.startup(function(use)
 	use({
 		"akinsho/toggleterm.nvim",
 		tag = "v2.*",
-		config = function()
-			require("toggleterm").setup()
-		end,
+		config = "require('toggleterm-config')",
 	})
 
 	-- Lazygit
