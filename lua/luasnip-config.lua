@@ -4,6 +4,8 @@ local types = require("luasnip.util.types")
 -- require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets" })
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.filetype_extend("javascript", { "javascriptreact" })
+-- luasnip.filetype_extend("javascript", { "html" })
+-- luasnip.filetype_extend("javascript", { "css" })
 
 luasnip.config.setup({
 	history = true,

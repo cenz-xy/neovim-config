@@ -40,7 +40,7 @@ return packer.startup(function(use)
 	})
 
 	-- Dashboard a start screen
-	use({ "glepnir/dashboard-nvim", config = "require('dashboard-config')" })
+	-- use({ "glepnir/dashboard-nvim", config = "require('dashboard-config')" })
 
 	-- Telescope a finder over lists
 	use({
@@ -88,13 +88,6 @@ return packer.startup(function(use)
 			"nvim-lua/plenary.nvim",
 		},
 		config = { "require('lsp-config')", "require('luasnip-config')" },
-	})
-	use({
-		"williamboman/mason.nvim",
-		requires = {
-			"williamboman/mason-lspconfig.nvim",
-		},
-		config = "require('mason-config')",
 	})
 
 	-- Treesitter for highlighting

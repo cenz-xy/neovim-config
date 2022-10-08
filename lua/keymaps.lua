@@ -35,20 +35,7 @@ map("v", "<", "<gv", { noremap = true, silent = false })
 map("v", ">", ">gv", { noremap = true, silent = false })
 
 -- Bufferline
-vim.cmd([[
-  nnoremap <leader><TAB> :BufferLineCycleNext<CR>
-  nnoremap <leader><S-TAB> :BufferLineCyclePrev<CR>
-]])
+map("n", "<TAB>", ":BufferLineCycleNext<CR>")
+map("n", "<S-TAB>", ":BufferLineCyclePrev<CR>")
 
--- Luasnip
-vim.keymap.set({ "i", "s" }, "<silent><TAB>", function()
-	if require("luasnip").jumpable(1) then
-		require("luasnip").jump(1)
-	end
-end)
-
-vim.keymap.set({ "i", "s" }, "<silent><S-TAB>", function()
-	if require("luasnip").jumpable(-1) then
-		require("luasnip").jump(-1)
-	end
-end)
+map("n", "<C-u>", ":redo<CR>")
